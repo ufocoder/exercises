@@ -54,9 +54,8 @@ lazyProduct = multiply 1
   where
     multiply :: Int -> [Int] -> Int
     multiply acc [] = acc
-    multiply acc (x : xs)
-        | x == 0    = multiply 0 []
-        | otherwise = multiply (acc * x) xs
+    multiply _   (0 : _)  = 0
+    multiply acc (x : xs) = multiply (acc * x) xs
 
 {- | Implement a function that duplicates every element in the list.
 
