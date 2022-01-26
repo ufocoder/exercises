@@ -236,9 +236,9 @@ types that can have such an instance.
 -- instance Foldable Gold where
 -- instance Foldable Reward where
 
--- instance Foldable List1 where
---   foldr _ z [] = z
---  foldr f z (x : xs) = f x (foldr f z xs)
+instance Foldable List1 where
+  foldr f z (List1 a []) = f a z
+  foldr f z (List1 _ (x : xs))  = f x (foldr f z xs)
     
 instance Foldable Treasure where
   foldr _ z NoTreasure = z
