@@ -98,7 +98,7 @@ weekday to the second.
 
 daysTo :: Weekday -> Weekday -> Int
 daysTo from to
-  | from > to = delta + fromEnum (maxBound `asTypeOf` from) + 1
+  | from > to = delta + fromEnum (maxBound :: Weekday) + 1
   | otherwise = delta
   where
     delta = fromEnum to - fromEnum from
@@ -133,10 +133,7 @@ data Reward = Reward
     } deriving (Show, Eq)
 
 instance Semigroup Reward where
-  (<>) (Reward a True) (Reward b _) = Reward (a <> b) True
-  (<>) (Reward a _) (Reward b True) = Reward (a <> b) True
-  (<>) (Reward a _) (Reward b _) = Reward (a <> b) False
-
+  (<>) (Reward g1 s1) (Reward g2 s2) = Reward (g1 <> g2) (s1 || s2)
 
 instance Monoid Reward where
   mempty = Reward mempty False
