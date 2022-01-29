@@ -150,7 +150,7 @@ data List1 a = List1 a [a]
 
 -- | This should be list append.
 instance Semigroup (List1 a) where
-  (<>) (List1 a1 a2) (List1 b1 b2) = List1 a1 (a2 <> [b1] <> b2)
+  List1 x xs <> List1 y ys = List1 x (xs <> (y : ys))
 
 {- | Does 'List1' have the 'Monoid' instance? If no then why?
 
